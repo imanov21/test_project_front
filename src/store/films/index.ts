@@ -1,8 +1,23 @@
 import { createStore } from 'effector';
-import { Video } from 'store/video/interfaces';
-import { fetchFilmsList } from './effects/fetchFilmsList';
+import { VideoStore, PayloadState, Video } from 'store/shared/interfaces';
+import { fetchFilmsList, fetchFilm, createFilm } from './effects';
 // import toast from 'cogo-toast';
 
-export const $filmsStore = createStore<Video[] | null>(null);
+export const $filmStore = createStore<VideoStore>({ list: [], single: null, total: 0 });
 
-$filmsStore.on(fetchFilmsList.doneData, (_, v) => v);
+$filmStore.on(fetchFilmsList.doneData, (state, payload: PayloadState) => ({
+    ...state,
+    list: payload.results,
+    total: payload.count,
+}));
+
+$filmStore.on(fetchFilm.doneData, (state, payload: Video) => ({
+    ...state,
+    single: payload,
+}));
+
+// $filmStore.on(createFilm.doneData, (state, payload: PayloadState) => ({
+//     ...state,
+//     list: payload.results,
+//     total: payload.count,
+// }));

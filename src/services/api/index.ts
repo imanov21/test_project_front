@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { TOKEN_KEY } from '../../constants/index';
-// import history from '../history/history';
+import history from '../../@history';
 
 const USER_NOT_AUTHED_CODE = 401;
 
@@ -20,10 +20,10 @@ api.interceptors.request.use((config: AxiosRequestConfig) => {
 
     return {
         ...config,
-        // headers: {
-        //   ...config.headers,
-        //   ...(authHeader && { Authorization: authHeader }),
-        // },
+        headers: {
+            ...config.headers,
+            ...(authHeader && { Authorization: authHeader }),
+        },
     };
 });
 
@@ -31,7 +31,7 @@ api.interceptors.response.use(
     data => data,
     (error: AxiosError) => {
         if (error.response?.status === USER_NOT_AUTHED_CODE) {
-            // history.replace('/login');
+            history.replace('/');
         }
 
         return Promise.reject(error.response);

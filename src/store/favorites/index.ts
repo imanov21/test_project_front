@@ -1,8 +1,11 @@
 import { createStore } from 'effector';
-import { fetchFavoritesList } from './effects/fetchFavoritesList';
-import { FavoritesState } from './interfaces';
+import { fetchFavoritesList } from './effects';
+import { FavoritesStore, PayloadState } from './interfaces';
 // import toast from 'cogo-toast';
 
-export const $favoritesStore = createStore<FavoritesState | null>(null);
+export const $videoStore = createStore<FavoritesStore>({ list: [] });
 
-$favoritesStore.on(fetchFavoritesList.doneData, (_, v) => v);
+$videoStore.on(fetchFavoritesList.doneData, (state, payload: PayloadState) => ({
+    ...state,
+    list: payload.favorites,
+}));

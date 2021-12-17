@@ -1,5 +1,5 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import Routes from './routes/Router';
+import Routs from './routes/Router';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/footer/Footer';
 import './App.css';
@@ -13,7 +13,7 @@ function App() {
                 <GlobalCssOverride />
                 <Header />
                 <main>
-                    <Routes />
+                    <Routs />
                 </main>
                 <Footer />
             </Router>

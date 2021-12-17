@@ -1,19 +1,21 @@
-import { Switch, Route } from 'react-router-dom';
-import pages from './pages';
+import { Route, Routes } from 'react-router-dom';
+import { VideoPage } from 'pages/Video/DetailPage/VideoPage';
+import { Home } from 'pages/Home/Home';
+import { Login } from 'pages/Login/Login';
+import { FavoritesList } from 'pages/FavoritesList/FavoritesList';
+import Logout from 'pages/logout/Logout';
+import { ListPage } from 'pages/Video/ListPage';
 
-/*
-    TO DO
-    1. Update react-router-dom lib
-    2. Replace Switch with Routes
-    3. Replace 15 row with <Route path={page.path} element={page.component} />
-*/
-
-const Routes = () => (
-    <Switch>
-        {pages.map((page: any) => (
-            <Route path={page.path} component={page.component} exact />
-        ))}
-    </Switch>
+const Routs = () => (
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/video/:id" element={<VideoPage />} />
+        <Route path="/favorites" element={<FavoritesList />} />
+        <Route path="/films" element={<ListPage videoType="Films" />} />
+        <Route path="/serials" element={<ListPage videoType="Serials" />} />
+    </Routes>
 );
 
-export default Routes;
+export default Routs;

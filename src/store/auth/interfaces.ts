@@ -1,8 +1,7 @@
 export interface AuthState {
-    email: string;
-    password: string;
+    favorites: number[];
     username: string;
-    id: string;
+    id: number;
 }
 export interface LoginPayload {
     username: string;

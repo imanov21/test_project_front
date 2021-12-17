@@ -4,13 +4,15 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Dialog } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
 import { loginFx } from 'store/auth/effects/login';
 import AuthForm from 'components/auth-form/AuthForm';
-import { useStyles } from './styles';
-import history from '../../@history/index';
+// import { useStyles } from './styles';
+import history from '../../@history';
 
-export const SignIn = () => {
-    const classes = useStyles();
+export const Login = () => {
+    // const classes = useStyles();
+    const navigate = useNavigate();
     const defaultValues = {
         email: '',
         password: '',
@@ -19,7 +21,7 @@ export const SignIn = () => {
 
     const onSubmit = async (model: { username: string; password: string }) => {
         await loginFx(model);
-        history.push('/');
+        navigate('/');
     };
 
     return (

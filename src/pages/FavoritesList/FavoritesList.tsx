@@ -6,21 +6,12 @@ import { fetchVideoList } from 'store/video/effects';
 import { VideoBox } from '../../components/VideoBox/VideoBox';
 import { useStyles } from './styles';
 
-export const Home = (props: any) => {
-    const cards = ['ACTION', 'FANTASY', 'SCIENCE'];
-    const { list } = useStore($videoStore);
-
+export const FavoritesList = () => {
     const classes = useStyles();
-
-    useEffect(() => {
-        fetchVideoList();
-    }, []);
 
     return (
         <div className={classes.root}>
-            {cards.map((card: any) => (
-                <VideoBox key={uuid()} title={card} list={list} option="genres" />
-            ))}
+            <VideoBox key={uuid()} title="Favorites" option="favorites" />
         </div>
     );
 };
